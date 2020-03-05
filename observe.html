@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let person = 
+    {
+        name:"喜洋洋",
+        friend:{
+            a:"懒洋洋",
+            b:"大洋洋",
+            c:"小洋洋"
+        }
+    }
+    observe(person) //调用observe函数监听是否有变化
+    person.name = "洗羊羊"
+    person.friend.a = "烤羊羊"
+    function observe(person){
+        if(!person || typeof person !== "object"){ 
+            return;
+        }
+        //对该对象属性进行遍历
+        Object.keys(person).forEach(function(key){
+            defineReactive(person,key,person[key])
+        })
+        //利用Object.defineProperty来劫持各个属性的setter
+        function defineReactive(person,key,val){
+            observe(val) //监听该对象的子属性
+            Object.defineProperty(person,key,{
+                enumerable:true,
+                configurable:false,
+                get:function(){
+                    return val
+                },
+                set:function(newVal){
+                    console.log(`${val},旧值 ==> ${newVal},新值`)
+                    val = newVal
+                }
+            })
+        }
+    }
+
+</script>
+</html>

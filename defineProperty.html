@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // let person = {}
+    // Object.defineProperty(person,"name",{
+    //     get:function(){
+    //         return temp
+    //     },
+    //     set:function(val){
+    //         temp = val
+    //     }
+    // })
+    // person.name = "老王"
+    // console.log(person.name)
+    let person1 = {}
+    Object.defineProperty(person1,"name",{
+        value:"haha",
+        configurable:true
+    })
+    Object.defineProperty(person1,"name",{
+        value:"2"
+    })
+    console.log(person1.name)
+</script>
+</html>
